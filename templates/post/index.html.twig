@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+
+<div class="container pt-5">
+
+    <h1>Post index</h1>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th style="width:5%;">Id</th>
+                <th style="width:28%;">Title</th>
+                <th style="width:55%;">Content</th>
+                <th style="width:12%;">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.content }}</td>
+                <td>
+                    <a class="btn btn-warning" role="button" href="{{ path('post_show', {'id': post.id}) }}">show</a>
+                    <a class="btn btn-info" role="button" href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" role="button" href="{{ path('post_new') }}">Create new</a>
+
+  </div>
+{% endblock %}
